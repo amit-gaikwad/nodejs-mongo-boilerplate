@@ -23,8 +23,14 @@ const login = catchAsync(async (req, res) => {
   };
   res.send(response);
 });
+const refreshTokens = catchAsync(async (req, res) => {
+  const tokens = await authService.refreshAuthTokens(req.body.refreshToken);
+  const response = { ...tokens };
+  res.send(response);
+});
 
 module.exports = {
   createUser,
   login,
+  refreshTokens,
 };

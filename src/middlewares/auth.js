@@ -2,6 +2,7 @@ const passport = require('passport');
 const httpStatus = require('http-status');
 const AppError = require('../utils/AppError');
 const { roleRights } = require('../config/roles');
+const logger = require('../config/logger');
 
 const verifyCallback = (req, resolve, reject, requiredRights) => async (err, user, info) => {
   if (err || info || !user) {
@@ -11,6 +12,8 @@ const verifyCallback = (req, resolve, reject, requiredRights) => async (err, use
 
   if (requiredRights.length) {
     const userRights = roleRights.get(user.role);
+    logger.info(`roles from const ${user} &&&${user.role} ***${userRights}`);
+
     const hasRequiredRights = requiredRights.every((requiredRight) => userRights.includes(requiredRight));
     if (!hasRequiredRights && req.params.userId !== user.id) {
       return reject(new AppError(httpStatus.FORBIDDEN, 'Forbidden'));
