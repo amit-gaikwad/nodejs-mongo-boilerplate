@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "start": "cross-env NODE_ENV=production node src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/amit-gaikwad/nodejs-mongo-boilerplate#readme",
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
     "eslint": "^7.21.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
