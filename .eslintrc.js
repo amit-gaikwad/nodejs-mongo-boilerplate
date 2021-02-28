@@ -13,6 +13,7 @@ module.exports = {
         endOfLine: 'crlf',
       },
     ],
+    "no-underscore-dangle": "off"
   },
   ignorePatterns: ['.eslintrc.js', '*.test.js'],
 };

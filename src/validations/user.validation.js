@@ -1,4 +1,6 @@
 const Joi = require('@hapi/joi');
+const validationUtils = require('../utils/validation.util');
+
 
 const crateUser = {
   body: Joi.object().keys({
@@ -6,12 +8,7 @@ const crateUser = {
     password: Joi.string()
       .required()
       .min(8)
-      .custom((value, helpers) => {
-        if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
-          return helpers.message('Password must contain at least one letter and one number');
-        }
-        return value;
-      }),
+      .custom(validationUtils.validatePassword),
     name: Joi.string().required(),
   }),
 };
