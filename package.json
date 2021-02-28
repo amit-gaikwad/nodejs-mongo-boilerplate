@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/amit-gaikwad/nodejs-mongo-boilerplate#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "eslint": "^7.21.0",
@@ -35,6 +36,7 @@
     "nodemon": "^2.0.7",
     "pm2": "^4.5.5",
     "prettier": "^2.2.1",
+    "validator": "^13.5.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
