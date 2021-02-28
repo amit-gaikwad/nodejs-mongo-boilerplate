@@ -40,6 +40,17 @@ const userSchema = mongoose.Schema(
       enum: roles,
       defualt: 'user',
     },
+    mobile: {
+      type: Number,
+      required: true,
+      unique: true,
+      trim: true,
+      validate(value) {
+        if (!validator.isMobilePhone(value.toString()) || !value.toString().match(/\d{10}/)) {
+          throw new Error(ERROR_MESSAGES.MOBILE_NOT_VALID);
+        }
+      },
+    },
   },
   {
     timestamps: true,

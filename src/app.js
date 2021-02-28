@@ -2,7 +2,7 @@ const express = require('express');
 const loggger = require('./config/logger');
 const mongoose = require('./config/mongoose');
 const routes = require('./routes/v1');
-const { errorConverter, unknownRouteHandler,errorHandler } = require('./middlewares/error');
+const { errorConverter, unknownRouteHandler, errorHandler } = require('./middlewares/error');
 
 //mongoose.connect();
 const app = express();

@@ -2,7 +2,7 @@ const moment = require('moment');
 const config = require('../config/config');
 const tokenService = require('./token.service');
 
-const generateAuthTokens = async userId => {
+const generateAuthTokens = async (userId) => {
   const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
   const accessToken = tokenService.generateToken(userId, accessTokenExpires);
 

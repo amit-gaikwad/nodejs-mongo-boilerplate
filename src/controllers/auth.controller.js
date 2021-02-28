@@ -9,7 +9,7 @@ const createUser = catchAsync(async (req, res) => {
 
   const response = {
     user: user.transform(),
-    tokens
+    tokens,
   };
   res.status(httpStatus.CREATED).send(response);
 });
