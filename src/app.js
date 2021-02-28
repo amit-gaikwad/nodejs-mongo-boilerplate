@@ -1,12 +1,14 @@
 const express = require('express');
 const loggger = require('./config/logger');
 const mongoose = require('./config/mongoose');
+const routes = require('./routes/v1');
 
 //mongoose.connect();
 const app = express();
-app.use('/', (req, res) => {
-  res.send('Working');
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/v1', routes);
 
 mongoose.connect().then(() => {
   loggger.info('Connected to MongoDB');
