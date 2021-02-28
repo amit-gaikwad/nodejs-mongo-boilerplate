@@ -5,7 +5,7 @@ const { authService, userService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
-  const tokens = await authService.generateAuthTokens('5db5d97e287ebe4e58de5f28');
+  const tokens = await authService.generateAuthTokens(user.id);
 
   const response = {
     user: user.transform(),
