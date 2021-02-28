@@ -2,7 +2,7 @@ const express = require('express');
 const loggger = require('./config/logger');
 const mongoose = require('./config/mongoose');
 const routes = require('./routes/v1');
-const { errorConverter, errorHandler } = require('./middlewares/error');
+const { errorConverter, unknownRouteHandler,errorHandler } = require('./middlewares/error');
 
 //mongoose.connect();
 const app = express();
@@ -15,6 +15,9 @@ app.use(errorConverter);
 
 // handle error
 app.use(errorHandler);
+
+// send back a 404 error for any unknown api request
+app.use(unknownRouteHandler);
 
 mongoose.connect().then(() => {
   loggger.info('Connected to MongoDB');

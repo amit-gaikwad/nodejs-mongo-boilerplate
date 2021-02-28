@@ -52,7 +52,7 @@ userSchema.methods.toJSON = function () {
   const user = this;
   return omit(user.toObject(), ['password']);
 };
-    
+
 userSchema.methods.transform = function () {
   const user = this;
   return pick(user.toJSON(), ['id', 'email', 'name', 'role']);
