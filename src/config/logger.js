@@ -5,7 +5,6 @@ const logger = winston.createLogger({
   level: env === 'development' ? 'debug' : 'info',
   transports: [
     new winston.transports.Console({
-      level: 'debug',
       stderrLevels: ['error'],
       format: winston.format.combine(
         env === 'development' ? winston.format.colorize() : winston.format.uncolorize(),
