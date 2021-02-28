@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/amit-gaikwad/nodejs-mongo-boilerplate#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
