@@ -14,6 +14,17 @@ const createUser = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(response);
 });
 
+const login = catchAsync(async (req, res) => {
+  const user = await authService.loginUser(req.body.email, req.body.password);
+  const tokens = await authService.generateAuthTokens(user.id);
+  const response = {
+    user: user.transform(),
+    tokens,
+  };
+  res.send(response);
+});
+
 module.exports = {
   createUser,
+  login,
 };

@@ -38,7 +38,7 @@ const userSchema = mongoose.Schema(
     role: {
       type: String,
       enum: roles,
-      // TODO need to add user instead of admin later 
+      // TODO need to add user instead of admin later
       defualt: 'admin',
     },
     mobile: {
