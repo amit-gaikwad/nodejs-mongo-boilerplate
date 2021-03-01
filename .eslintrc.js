@@ -10,7 +10,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'crlf',
+        endOfLine: 'off',
       },
     ],
     'no-underscore-dangle': 'off',
