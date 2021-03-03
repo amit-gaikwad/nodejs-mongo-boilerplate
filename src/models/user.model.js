@@ -70,6 +70,18 @@ userSchema.methods.transform = function () {
   return pick(user.toJSON(), ['id', 'email', 'name', 'role']);
 };
 
+/**
+ * Check if email is taken
+ * @param {string} email - The user's email
+ * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
+ * @returns {Promise<boolean>}
+ */
+userSchema.methods.isEmailTaken = async function (email, excludeUserId) {
+  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+  return !!user;
+};
+
+
 userSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {

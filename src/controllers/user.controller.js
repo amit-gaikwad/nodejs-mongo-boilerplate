@@ -13,6 +13,12 @@ const getUser = catchAsync(async (req, res) => {
   res.send(user.transform());
 });
 
+const deleteUserById = catchAsync(async (req, res) => {
+  //const status = await userService.deleteUserById(req.params.userId);
+  await userService.deleteUserById(req.params.userId);
+  res.send(httpStatus.OK);
+});
+
 const updateUser = catchAsync(async (req, res) => {
   const user = await userService.updateUser(req.params.userId, req.body);
   res.send(user.transform());
@@ -22,4 +28,5 @@ module.exports = {
   createUser,
   getUser,
   updateUser,
+  deleteUserById,
 };

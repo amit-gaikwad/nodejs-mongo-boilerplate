@@ -23,6 +23,29 @@ const getUserByEmail = async (email) => {
   }
   return user;
 };
+
+const deleteUserById = async (_id) => {
+  const res = await User.deleteOne({ _id });
+  if (res.deletedCount === 0) {
+    throw new AppError(httpStatus.NOT_FOUND, 'No user found with this id');
+  }
+  return res;
+};
+
+const updateUser = async(id,updateBody)=>{
+    const user = await getUserById(id);
+    if (!user) {
+      throw new AppError(httpStatus.NOT_FOUND, 'No user found with this id');
+    }
+    if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    console.log("updateBody",id,updateBody);
+    Object.assign(user, updateBody);
+    user.save();
+    return user;
+}
+
 const getUserById = async (id) => {
   return User.findById(id);
 };
@@ -31,4 +54,6 @@ module.exports = {
   createUser,
   getUserByEmail,
   getUserById,
+  deleteUserById,
+  updateUser
 };
