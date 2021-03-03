@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const { userService } = require('../services');
+const logger = require('../config/logger');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -11,6 +12,11 @@ const createUser = catchAsync(async (req, res) => {
 const getUser = catchAsync(async (req, res) => {
   const user = await userService.getUserById(req.params.userId);
   res.send(user.transform());
+});
+
+const getAllUsers = catchAsync(async (req, res) => {
+  const users = await userService.getAllUsers();
+  res.send(users);
 });
 
 const deleteUserById = catchAsync(async (req, res) => {
@@ -29,4 +35,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUserById,
+  getAllUsers
 };

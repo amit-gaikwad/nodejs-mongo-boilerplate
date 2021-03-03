@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const AppError = require('../utils/AppError');
 const { User } = require('../models');
 const ERROR_MESSAGES = require('../constants/errorMessage');
+const logger = require('../config/logger');
 
 const checkDuplicateEmail = async (email, excludeUserId) => {
   const user = await User.findOne({ email, _id: { $ne: excludeUserId } });
@@ -50,10 +51,18 @@ const getUserById = async (id) => {
   return User.findById(id);
 };
 
+const getAllUsers = async () => {
+  const users =await User.find();
+  logger.info("users>>",users)
+  return users;
+};
+
+
 module.exports = {
   createUser,
   getUserByEmail,
   getUserById,
   deleteUserById,
-  updateUser
+  updateUser,
+  getAllUsers
 };
