@@ -4,6 +4,8 @@ const loggger = require('./config/logger');
 const mongoose = require('./config/mongoose');
 const routes = require('./routes/v1');
 const { jwtStrategy } = require('./config/passport');
+var cors = require('cors')
+
 
 const { errorConverter, unknownRouteHandler, errorHandler } = require('./middlewares/error');
 
@@ -11,6 +13,7 @@ const { errorConverter, unknownRouteHandler, errorHandler } = require('./middlew
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use('/v1', routes);
 

@@ -52,7 +52,7 @@ const getUserById = async (id) => {
 };
 
 const getAllUsers = async () => {
-  const users =await User.find();
+  const users =await User.find({role:{$not :/^admin.*/}});
   logger.info("users>>",users)
   return users;
 };
